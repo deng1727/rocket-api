@@ -9,9 +9,9 @@ spring:
     format:
       dateTime: yyyy-MM-dd HH:mm:ss
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/dataway2?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
-    username: root
-    password: 123456
+    url: jdbc:mysql://rm-3nsc58907o3epw2me.mysql.rds.aliyuncs.com:3306/estuary?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: dbadmin
+    password: hE4sqSfuCQeXEXwz
     driver-class-name: com.mysql.cj.jdbc.Driver
   data:
     mongodb:
