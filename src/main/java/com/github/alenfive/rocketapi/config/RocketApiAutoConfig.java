@@ -163,11 +163,11 @@ public class RocketApiAutoConfig {
         return new DbFunction();
     }
 
-    @Bean
-    @ConditionalOnMissingBean
-    public MongoFunction getMongoFunction(){
-        return new MongoFunction();
-    }
+//    @Bean
+//    @ConditionalOnMissingBean
+//    public MongoFunction getMongoFunction(){
+//        return new MongoFunction();
+//    }
 
     @Bean
     @ConditionalOnMissingBean
@@ -253,11 +253,11 @@ public class RocketApiAutoConfig {
         return new ClickHouseDriver();
     }
 
-    @Bean
-    @ConditionalOnMissingBean
-    public MongoDriver getMongoDriver(){
-        return new MongoDriver();
-    }
+//    @Bean
+//    @ConditionalOnMissingBean
+//    public MongoDriver getMongoDriver(){
+//        return new MongoDriver();
+//    }
 
     @Bean
     @ConditionalOnMissingBean

@@ -21,7 +21,7 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import java.util.Collection;
 
-
+//@Component
 public class JavaScriptScriptParse implements IScriptParse{
 
     @Autowired

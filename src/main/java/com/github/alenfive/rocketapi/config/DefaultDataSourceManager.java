@@ -22,14 +22,14 @@ public class DefaultDataSourceManager extends DataSourceManager {
     @Autowired
     private DataSource dataSource;
 
-    @Autowired
-    private MongoTemplate mongoTemplate;
+//    @Autowired
+//    private MongoTemplate mongoTemplate;
 
     @PostConstruct
     public void init() {
         Map<String,DataSourceDialect> dialectMap = new LinkedHashMap<>();
         dialectMap.put("mysql",new MySQLDataSource(dataSource,true));
-        dialectMap.put("mongodb",new MongoDataSource(mongoTemplate));
+//        dialectMap.put("mongodb",new MongoDataSource(mongoTemplate));
         super.setDialectMap(dialectMap);
     }
 }

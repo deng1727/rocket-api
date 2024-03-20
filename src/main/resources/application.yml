@@ -13,13 +13,13 @@ spring:
     username: dbadmin
     password: hE4sqSfuCQeXEXwz
     driver-class-name: com.mysql.cj.jdbc.Driver
-  data:
-    mongodb:
-      host: 127.0.0.1
-      database: dataway2
-      username: root
-      password: 123456
-      port: 27017
+#  data:
+#    mongodb:
+#      host: 127.0.0.1
+#      database: dataway2
+#      username: root
+#      password: 123456
+#      port: 27017
   thymeleaf:
     cache: false
     check-template: true
@@ -35,7 +35,7 @@ spring:
 
 logging:
   level:
-    com.github.alenfive.rocketapi: debug
+    com.github.alenfive.rocketapi: info
 #server:
 #  servlet:
 #    context-path: /rocket-api
