@@ -12,7 +12,11 @@ public abstract class DruidJdbcDriver extends IDataSourceDialectDriver {
         druidDataSource.setUrl(config.getUrl());
         druidDataSource.setUsername(config.getUser());
         druidDataSource.setPassword(config.getPassword());
-        druidDataSource.setDriverClassName("org.elasticsearch.xpack.sql.jdbc.EsDriver");
+        if (config.getUrl().contains("clickhouse")){
+            druidDataSource.setDriverClassName("ru.yandex.clickhouse.ClickHouseDriver");
+        }else {
+            druidDataSource.setDriverClassName("org.elasticsearch.xpack.sql.jdbc.EsDriver");
+        }
         druidDataSource.setDriver(null);
         druidDataSource.setBreakAfterAcquireFailure(true);
         druidDataSource.setConnectionErrorRetryAttempts(0);

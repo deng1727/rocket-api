@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * SQL  构造器
  */
 @Component
-public class ClickHouseDriver extends JdbcDriver {
+public class ClickHouseDriver extends DruidJdbcDriver {
 
     @Override
     public String getName() {

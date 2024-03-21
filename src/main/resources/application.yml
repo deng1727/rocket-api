@@ -36,9 +36,9 @@ spring:
 logging:
   level:
     com.github.alenfive.rocketapi: info
-#server:
-#  servlet:
-#    context-path: /rocket-api
+
 server:
   compression:
     enabled: true
+  servlet:
+    context-path: /estuary

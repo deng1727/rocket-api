@@ -2,10 +2,9 @@ package com.github.alenfive.rocketapi.config;
 
 import com.github.alenfive.rocketapi.datasource.DataSourceDialect;
 import com.github.alenfive.rocketapi.datasource.DataSourceManager;
-import com.github.alenfive.rocketapi.datasource.MongoDataSource;
 import com.github.alenfive.rocketapi.datasource.MySQLDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
+//import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;

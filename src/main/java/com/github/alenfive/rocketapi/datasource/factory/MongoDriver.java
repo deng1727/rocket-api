@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 /**
  * mongodb  构造器
  */
-@Component
+//@Component
 public class MongoDriver extends IDataSourceDialectDriver {
 
     @Override
@@ -24,7 +24,7 @@ public class MongoDriver extends IDataSourceDialectDriver {
 
     @Override
     public String getFormat() {
-        return "mongodb://localhost:27017/test";
+        return "mongodb://172.0.0.1:27017/test1";
     }
 
     @Override

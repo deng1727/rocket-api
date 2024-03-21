@@ -160,6 +160,7 @@ public class DbFunction implements IFunction {
         long startTime = System.currentTimeMillis();
         ScriptContext scriptContext = null;
         try {
+
             DataSourceDialect dataSourceDialect = dataSourceManager.getDataSourceDialect(apiInfoContent.getApiInfo().getDatasource(),datasource);
             scriptContext = dataSourceManager.buildScriptContext(sbScript,dataSourceDialect,params);
             result = dataSourceDialect.insert(scriptContext);
