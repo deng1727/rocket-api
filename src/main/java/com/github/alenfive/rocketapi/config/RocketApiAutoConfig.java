@@ -163,11 +163,11 @@ public class RocketApiAutoConfig {
         return new DbFunction();
     }
 
-//    @Bean
-//    @ConditionalOnMissingBean
-//    public MongoFunction getMongoFunction(){
-//        return new MongoFunction();
-//    }
+    @Bean
+    @ConditionalOnMissingBean
+    public MongoFunction getMongoFunction(){
+        return new MongoFunction();
+    }
 
     @Bean
     @ConditionalOnMissingBean

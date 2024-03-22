@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 /**
  * mongodb  构造器
  */
-//@Component
+@Component
 public class MongoDriver extends IDataSourceDialectDriver {
 
     @Override

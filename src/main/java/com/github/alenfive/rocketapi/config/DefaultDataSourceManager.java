@@ -5,6 +5,7 @@ import com.github.alenfive.rocketapi.datasource.DataSourceManager;
 import com.github.alenfive.rocketapi.datasource.MySQLDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -22,7 +23,7 @@ public class DefaultDataSourceManager extends DataSourceManager {
     private DataSource dataSource;
 
 //    @Autowired
-//    private MongoTemplate mongoTemplate;
+    private MongoTemplate mongoTemplate;
 
     @PostConstruct
     public void init() {
