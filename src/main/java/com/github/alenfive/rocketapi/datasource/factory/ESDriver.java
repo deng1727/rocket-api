@@ -18,7 +18,7 @@ public class ESDriver extends DruidJdbcDriver {
 
     @Override
     public String getIcon() {
-        return "rocketapi/images/Elasticsearch.png";
+        return "rocketapi/images/ES.jpeg";
     }
 
     @Override
