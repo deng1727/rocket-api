@@ -236,7 +236,7 @@
     <div class="modal-header"><a class="close" onclick="hideDataSourceConfig()" data-dismiss="modal">×</a>
         <h3>Data Sources<small></small></h3></div>
     <div class="modal-body" style="overflow: hidden;width: 100%;padding: 0px;height:450px;">
-        <div class="db-left">
+        <div class="db-left" style="display: flex; height: 100% ;flex-direction: column";  >
             <div class="db-tool">
                 <div class="btn-group ctrls dropdown-primary">
                     <a class="btn-mini dropdown-toggle db-add" data-toggle="dropdown"><i class="fa fa-plus"></i></a>
@@ -247,7 +247,7 @@
                 <div class="fa fa-files-o" onclick="copyDB()" aria-hidden="true"></div>
             </div>
             <div class="db-split">Data Sources</div>
-            <div class="db-list">
+            <div class="db-list" style="overflow-y: auto ; height: 100%">
                 <div><span style="color:gray">Empty</span></div>
             </div>
         </div>
