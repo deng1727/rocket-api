@@ -9,9 +9,9 @@ spring:
     format:
       dateTime: yyyy-MM-dd HH:mm:ss
   datasource:
-    url: jdbc:mysql://rm-3nsc58907o3epw2me.mysql.rds.aliyuncs.com:3306/estuary?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
-    username: dbadmin
-    password: hE4sqSfuCQeXEXwz
+    url: jdbc:mysql://10.100.12.227:63307/rocket?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=Europe/Paris&rewriteBatchedStatements=true
+    username: rabee_dev
+    password: K5qHHrqF26qxmm2jLJ
     driver-class-name: com.mysql.cj.jdbc.Driver
 #  data:
 #    mongodb:
@@ -41,4 +41,4 @@ server:
   compression:
     enabled: true
   servlet:
-    context-path: /estuary
+    context-path: /rocket
