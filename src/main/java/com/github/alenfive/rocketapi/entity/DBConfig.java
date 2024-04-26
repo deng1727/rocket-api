@@ -17,6 +17,7 @@ import java.util.Properties;
 public class DBConfig extends ApiEntity{
 
     private String driver;
+
     private String name;
     private String comment;
 

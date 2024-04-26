@@ -1905,7 +1905,7 @@ function login() {
         }),
         success: function (data) {
             data = unpackResult(data);
-            if (data.code !=200){
+            if (data.code !=200) {
                 $("#loginDialog .login-error-message").text(data.msg);
                 return;
             }
@@ -2593,6 +2593,8 @@ function saveDB(params,closeDialog) {
             if (data.code !=200){
                 openMsgModal(data.msg);
                 return;
+            }else {
+                openMsgModal(data.msg);
             }
 
             if (params.id){
@@ -2608,6 +2610,7 @@ function saveDB(params,closeDialog) {
             }else{
                 loadDbConfigList(data.data);
             }
+
         },complete:function () {
             hideSendNotify();
         }

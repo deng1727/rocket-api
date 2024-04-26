@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class ApiResult {
     private Integer unpack = 1;
     private Integer code = 200;
-    private String msg = "success";
+    private String msg = "success!";
     private Object data;
 
     public static ApiResult success(Object data){

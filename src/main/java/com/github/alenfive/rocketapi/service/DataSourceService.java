@@ -12,6 +12,7 @@ import com.github.alenfive.rocketapi.entity.vo.NotifyEntity;
 import com.github.alenfive.rocketapi.entity.vo.NotifyEventType;
 import com.github.alenfive.rocketapi.entity.vo.RefreshDB;
 import com.github.alenfive.rocketapi.extend.IClusterNotify;
+import com.github.alenfive.rocketapi.utils.FieldUtils;
 import com.github.alenfive.rocketapi.utils.GenerateId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -81,6 +82,10 @@ public class DataSourceService {
 
     private void assertDBConfigName(String dbName,String dbId) {
         List<DBConfig> dbList = getDBConfig();
+        if (!FieldUtils.isAlphaBeta(dbName)){
+            throw new IllegalArgumentException("name:"+dbName+" is invaild,we need alphaBeta as bean name");
+        };
+
         for (DBConfig dbConfig : dbList){
             if (dbConfig.getName().equals(dbName) && !dbConfig.getId().equals(dbId)){
                 throw new IllegalArgumentException("name:"+dbName+" already exist");
@@ -107,7 +112,6 @@ public class DataSourceService {
             apiConfig.setId(dbConfig.getId());
             apiConfig.setConfigContext(objectMapper.writeValueAsString(dbConfig));
             dataSourceManager.getStoreApiDataSource().saveEntity(apiConfig);
-
             //加载新连接
             loadDBConfig(dbConfig);
         } else {

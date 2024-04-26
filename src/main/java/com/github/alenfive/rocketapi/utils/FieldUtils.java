@@ -13,6 +13,10 @@ public class FieldUtils {
 
     private static Pattern humpPattern = Pattern.compile("[A-Z]");
 
+    private static Pattern alphaBetaPattern = Pattern.compile("^[A-Za-z]+$");
+
+
+
     public static List<String> allTableFields(Class clazz){
         return FieldUtils.allFields(clazz).stream().map(item->humpToLine2(item.getName())).collect(Collectors.toList());
     }
@@ -79,5 +83,13 @@ public class FieldUtils {
         }
         matcher.appendTail(sb);
         return sb.toString();
+    }
+
+    /**
+     * 判断是否为全英文
+     */
+    public static boolean isAlphaBeta(String str) {
+        Matcher matcher = alphaBetaPattern.matcher(str);
+        return matcher.matches();
     }
 }
