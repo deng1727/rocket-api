@@ -565,10 +565,10 @@ function runApi(debug) {
 
     if (debug){
         let tokenStr = "DEBUG次数";
-        _czc.push(["_trackEvent",tokenStr,tokenStr,tokenStr,"1",tokenStr])
+        //_czc.push(["_trackEvent",tokenStr,tokenStr,tokenStr,"1",tokenStr])
     }else {
         let tokenStr = "RUN次数";
-        _czc.push(["_trackEvent",tokenStr,tokenStr,tokenStr,"1",tokenStr])
+        //_czc.push(["_trackEvent",tokenStr,tokenStr,tokenStr,"1",tokenStr])
     }
 }
 
@@ -744,7 +744,6 @@ function openMsgModal(msg) {
         showLoginDialog();
         return;
     }
-
     $("#modal-backdrop").show();
     $("#msgModal").show();
     $("#msgModal .modal-body").text(msg);
@@ -960,10 +959,10 @@ function saveExecuter(params) {
 
             if (params.id){
                 let tokenStr = "API保存次数";
-                _czc.push(["_trackEvent",tokenStr,tokenStr,tokenStr,"1",tokenStr])
+                //_czc.push(["_trackEvent",tokenStr,tokenStr,tokenStr,"1",tokenStr])
             }else{
                 let tokenStr = "API新增次数";
-                _czc.push(["_trackEvent",tokenStr,tokenStr,tokenStr,"1",tokenStr])
+                //_czc.push(["_trackEvent",tokenStr,tokenStr,tokenStr,"1",tokenStr])
             }
 
         },complete:function (req,data) {
@@ -1401,7 +1400,7 @@ function saveExample(id) {
     });
 
     let tokenStr = "POSTMAN保存次数";
-    _czc.push(["_trackEvent",tokenStr,tokenStr,tokenStr,"1",tokenStr])
+    //_czc.push(["_trackEvent",tokenStr,tokenStr,tokenStr,"1",tokenStr])
 }
 function requextUrlExample(ableRedirect) {
     let $form = $("#example-section");
@@ -1882,7 +1881,7 @@ function logout() {
             $("#top-section .login-info").hide();
 
             let tokenStr = "登出次数";
-            _czc.push(["_trackEvent",tokenStr,tokenStr,tokenStr,"1",tokenStr])
+            //_czc.push(["_trackEvent",tokenStr,tokenStr,tokenStr,"1",tokenStr])
 
         },complete:function (req,data) {
             hideSendNotify();
@@ -1921,7 +1920,7 @@ function login() {
             hideLoginDialog();
 
             let tokenStr = "登录次数";
-            _czc.push(["_trackEvent",tokenStr,tokenStr,tokenStr,"1",tokenStr])
+            //_czc.push(["_trackEvent",tokenStr,tokenStr,tokenStr,"1",tokenStr])
 
         },complete:function (req,data) {
             hideSendNotify();
@@ -2158,7 +2157,7 @@ function confirmDiff() {
     editorTextarea.setValue(modifiedModel.getValue());
 
     let tokenStr = "版本比对确认次数";
-    _czc.push(["_trackEvent",tokenStr,tokenStr,tokenStr,"1",tokenStr])
+    //_czc.push(["_trackEvent",tokenStr,tokenStr,tokenStr,"1",tokenStr])
 }
 function cancelDiff() {
     $("#editor-section .diff-body").hide();
@@ -2593,16 +2592,14 @@ function saveDB(params,closeDialog) {
             if (data.code !=200){
                 openMsgModal(data.msg);
                 return;
-            }else {
-                openMsgModal(data.msg);
             }
 
             if (params.id){
                 let tokenStr = "数据源保存次数";
-                _czc.push(["_trackEvent",tokenStr,params.driver,params.name,"1",tokenStr])
+                //_czc.push(["_trackEvent",tokenStr,params.driver,params.name,"1",tokenStr])
             }else{
                 let tokenStr = "数据源新增次数";
-                _czc.push(["_trackEvent",tokenStr,params.driver,params.name,"1",tokenStr])
+                //_czc.push(["_trackEvent",tokenStr,params.driver,params.name,"1",tokenStr])
             }
 
             if (closeDialog){
@@ -2613,6 +2610,7 @@ function saveDB(params,closeDialog) {
 
         },complete:function () {
             hideSendNotify();
+            openMsgModal(data.msg);
         }
     });
 }
@@ -2757,7 +2755,7 @@ function saveYmlGlobalConfig() {
             hideYmlConfig();
 
             let tokenStr = "YML保存次数";
-            _czc.push(["_trackEvent",tokenStr,tokenStr,tokenStr,"1",tokenStr])
+            //_czc.push(["_trackEvent",tokenStr,tokenStr,tokenStr,"1",tokenStr])
 
         },complete:function () {
             hideSendNotify();
@@ -2847,7 +2845,7 @@ function exportApiInfo(){
     hideExport();
 
     let tokenStr = "API导出次数";
-    _czc.push(["_trackEvent",tokenStr,fileName,tokenStr,apiInfoIds.length,tokenStr])
+    //_czc.push(["_trackEvent",tokenStr,fileName,tokenStr,apiInfoIds.length,tokenStr])
 }
 //-------------------------------- export end ------------------------------
 
@@ -2869,7 +2867,7 @@ function importApi() {
             data = unpackResult(data);
 
             let tokenStr = "API导入次数";
-            _czc.push(["_trackEvent",tokenStr,tokenStr,tokenStr,"1",tokenStr])
+            //_czc.push(["_trackEvent",tokenStr,tokenStr,tokenStr,"1",tokenStr])
 
             if (data.code !=200){
                 $("#import-dialog .error-message").text("import error:"+data.msg)
@@ -2925,7 +2923,7 @@ function remoteSync(increment) {
             }
 
             let tokenStr = "远程发布次数";
-            _czc.push(["_trackEvent",tokenStr,tokenStr,tokenStr,"1",tokenStr])
+            //_czc.push(["_trackEvent",tokenStr,tokenStr,tokenStr,"1",tokenStr])
 
             $("#remote-sync .error-message").text("Remote release successful size:"+data.data)
         },complete:function () {
@@ -3101,7 +3099,7 @@ function saveDirectory() {
             cancelDialog('#directory-editor');
 
             let tokenStr = "Directory创建次数";
-            _czc.push(["_trackEvent",tokenStr,name,tokenStr,"1",tokenStr])
+            //_czc.push(["_trackEvent",tokenStr,name,tokenStr,"1",tokenStr])
 
         },complete:function () {
             hideSendNotify();
@@ -3168,6 +3166,6 @@ function collapsedDirectory(parentId) {
 //-------------------------------- Directory Edit end ------------------------------
 
 function targetGo(tokenStr,url) {
-    _czc.push(["_trackEvent",tokenStr,tokenStr,tokenStr,"1",tokenStr])
+    //_czc.push(["_trackEvent",tokenStr,tokenStr,tokenStr,"1",tokenStr])
     window.open(url);
 }
