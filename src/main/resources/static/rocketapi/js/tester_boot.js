@@ -2610,7 +2610,6 @@ function saveDB(params,closeDialog) {
 
         },complete:function () {
             hideSendNotify();
-            openMsgModal(data.msg);
         }
     });
 }
