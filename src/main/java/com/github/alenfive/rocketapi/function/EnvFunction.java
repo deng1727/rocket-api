@@ -8,13 +8,13 @@ import org.springframework.stereotype.Component;
  * spring环境变量函数
  */
 @Component
-public class EnvFunction implements IFunction{
+public class EnvFunction extends AbsIFunction{
 
     @Autowired
     private Environment environment;
 
     @Override
-    public String getVarName() {
+    public String getFuncName() {
         return "env";
     }
 

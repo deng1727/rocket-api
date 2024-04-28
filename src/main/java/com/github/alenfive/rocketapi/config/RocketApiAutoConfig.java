@@ -181,11 +181,6 @@ public class RocketApiAutoConfig {
         return new LogFunction();
     }
 
-    @Bean
-    @ConditionalOnMissingBean
-    public PagerFunction getPagerFunction(){
-        return new PagerFunction();
-    }
 
     @Bean
     @ConditionalOnMissingBean

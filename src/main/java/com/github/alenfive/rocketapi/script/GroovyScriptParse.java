@@ -14,6 +14,7 @@ import com.github.alenfive.rocketapi.extend.ApiInfoContent;
 import com.github.alenfive.rocketapi.function.IFunction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
@@ -27,6 +28,7 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.SimpleBindings;
 import java.util.Collection;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 @Component
@@ -48,7 +50,7 @@ public class GroovyScriptParse implements IScriptParse{
     private DataSourceManager dataSourceManager;
 
     private Collection<IFunction> functionList;
-
+    private Map<String, JdbcTemplate> beansOfType;
     private ScriptEngineManager factory = new ScriptEngineManager();
 
     private ScriptEngine engine = null;
@@ -65,6 +67,14 @@ public class GroovyScriptParse implements IScriptParse{
 
         //加载函数
         functionList = context.getBeansOfType(IFunction.class).values();
+        beansOfType =  context.getBeansOfType(JdbcTemplate.class);
+    }
+
+    private void addBinding(Bindings bindings){
+        beansOfType.forEach((beanName, jdbcTemplate) -> {
+            bindings.put(beanName,jdbcTemplate);
+
+        });
     }
 
     @Override
@@ -87,11 +97,13 @@ public class GroovyScriptParse implements IScriptParse{
             apiInfoContent.setApiParams(apiParams);
 
             Bindings bindings = new SimpleBindings();
-
             apiInfoContent.setEngineBindings(bindings);
+            addBinding(bindings);
             for(IFunction function : functionList){
-                bindings.put(function.getVarName(),function);
+                bindings.put(function.getFuncName(),function);
+
             }
+
 
             //注入属性变量
             buildScriptParams(bindings,apiParams);

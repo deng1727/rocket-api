@@ -11,14 +11,14 @@ import java.util.Objects;
  * 异常断言函数
  */
 @Component
-public class AssertFunction implements IFunction{
+public class AssertFunction extends AbsIFunction{
 
     @Autowired
     private IAssertException assertException;
 
     @Override
-    public String getVarName() {
-        return "Assert";
+    public String getFuncName() {
+        return "assert";
     }
 
     public void isNotEmpty(Object input,String ... msg){

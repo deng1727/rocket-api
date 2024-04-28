@@ -29,6 +29,7 @@ public class FieldUtils {
         ArrayList<Field> fields = new ArrayList<>();
         fields.addAll(Arrays.asList(clazz.getSuperclass().getDeclaredFields()));
         fields.addAll(Arrays.asList(clazz.getDeclaredFields()));
+        
         return fields;
     }
 

@@ -25,7 +25,7 @@ import java.util.Map;
 @SuppressWarnings("DuplicatedCode")
 @Component
 @Slf4j
-public class MongoFunction implements IFunction{
+public class MongoFunction extends AbsIFunction{
 
     @Autowired
     private DataSourceManager dataSourceManager;
@@ -49,7 +49,7 @@ public class MongoFunction implements IFunction{
     private ScriptParseService parseService;
 
     @Override
-    public String getVarName() {
+    public String getFuncName() {
         return "mongodb";
     }
 

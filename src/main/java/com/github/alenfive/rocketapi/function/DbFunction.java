@@ -27,7 +27,7 @@ import java.util.Map;
 @Slf4j
 @AllArgsConstructor
 @NoArgsConstructor
-public class DbFunction implements IFunction {
+public class DbFunction extends AbsIFunction {
 
     @Autowired
     private DataSourceManager dataSourceManager;
@@ -62,7 +62,7 @@ public class DbFunction implements IFunction {
     }
 
     @Override
-    public String getVarName() {
+    public String getFuncName() {
         return "db";
     }
 

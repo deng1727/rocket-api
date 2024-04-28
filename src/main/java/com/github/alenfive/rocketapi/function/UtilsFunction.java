@@ -32,7 +32,7 @@ import java.util.Optional;
  * 工具类
  */
 @Component
-public class UtilsFunction implements IFunction{
+public class UtilsFunction extends AbsIFunction{
 
     @Autowired
     private ApiInfoContent apiInfoContent;
@@ -54,7 +54,7 @@ public class UtilsFunction implements IFunction{
     private IScriptParse scriptParse;
 
     @Override
-    public String getVarName() {
+    public String getFuncName() {
         return "Utils";
     }
 

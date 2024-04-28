@@ -10,6 +10,7 @@ import com.github.alenfive.rocketapi.function.IFunction;
 import com.github.alenfive.rocketapi.utils.PackageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Field;
@@ -51,7 +52,19 @@ public class CompletionService {
         //获取内置自定义函数变量
         Collection<IFunction> functionList = context.getBeansOfType(IFunction.class).values();
         functionList.forEach(item->{
-            variables.put(item.getVarName(),item.getClass().getName());
+            variables.put(item.getFuncName(),item.getClass().getName());
+        });
+
+        Map<String, JdbcTemplate> beansOfType = context.getBeansOfType(JdbcTemplate.class);
+
+        beansOfType.forEach((beanName, jdbcTemplate) -> {
+            variables.put(beanName,jdbcTemplate.getClass().getName());
+
+        });
+
+
+        functionList.forEach(item->{
+            variables.put(item.getFuncName(),item.getClass().getName());
         });
 
         //spring bean对象获取

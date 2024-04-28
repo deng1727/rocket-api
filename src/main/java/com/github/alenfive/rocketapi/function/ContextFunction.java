@@ -8,13 +8,13 @@ import org.springframework.stereotype.Component;
  * 异常断言函数
  */
 @Component
-public class ContextFunction implements IFunction{
+public class ContextFunction extends AbsIFunction{
 
     @Autowired
     private ApplicationContext context;
 
     @Override
-    public String getVarName() {
+    public String getFuncName() {
         return "springContext";
     }
 

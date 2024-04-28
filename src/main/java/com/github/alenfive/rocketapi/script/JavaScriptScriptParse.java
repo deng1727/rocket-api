@@ -56,7 +56,7 @@ public class JavaScriptScriptParse implements IScriptParse{
             ScriptEngine engine = factory.getEngineByName("js");
 
             for(IFunction function : functionList){
-                engine.put(function.getVarName(),function);
+                engine.put(function.getFuncName(),function);
             }
 
             //注入属性变量

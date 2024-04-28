@@ -11,13 +11,13 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Slf4j
-public class LogFunction implements IFunction{
+public class LogFunction extends AbsIFunction{
 
     @Autowired
     private ApiInfoContent apiInfoContent;
 
     @Override
-    public String getVarName() {
+    public String getFuncName() {
         return "log";
     }
 

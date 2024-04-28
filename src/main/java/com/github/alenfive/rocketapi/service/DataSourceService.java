@@ -2,6 +2,7 @@ package com.github.alenfive.rocketapi.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.alenfive.rocketapi.config.RocketApiProperties;
+import com.github.alenfive.rocketapi.config.SpringContextUtils;
 import com.github.alenfive.rocketapi.datasource.DataSourceDialect;
 import com.github.alenfive.rocketapi.datasource.DataSourceManager;
 import com.github.alenfive.rocketapi.datasource.factory.IDataSourceDialectDriver;
@@ -15,6 +16,7 @@ import com.github.alenfive.rocketapi.extend.IClusterNotify;
 import com.github.alenfive.rocketapi.utils.FieldUtils;
 import com.github.alenfive.rocketapi.utils.GenerateId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,7 +29,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class DataSourceService {
-
+    @Autowired
+    private ApplicationContext context;
     @Autowired
     private DataSourceManager dataSourceManager;
 
@@ -173,8 +176,20 @@ public class DataSourceService {
         IDataSourceDialectDriver factory = (IDataSourceDialectDriver)(Class.forName(config.getDriver()).newInstance());
         DataSourceDialect dialect = factory.factory(config);
         dialect.setDynamic(true);
-
         dataSourceManager.getDialectMap().put(config.getName(),dialect);
+        //loadDBConfigToSpring(config.getName(),dialect);
+    }
+
+    /**
+     * 动态加载数据源,并且托管给spring
+     * @param beanName
+     * @param dialect
+     */
+    private void loadDBConfigToSpring(String beanName , DataSourceDialect dialect) {
+
+        SpringContextUtils.registerBean(beanName,dialect.getClass());
+
+
 
     }
 
