@@ -187,7 +187,7 @@ public class DataSourceService {
      */
     private void loadDBConfigToSpring(String beanName , DataSourceDialect dialect) {
 
-        SpringContextUtils.registerBean(beanName,dialect.getClass());
+//        SpringContextUtils.registerBean(beanName,dialect.getClass());
 
 
 
