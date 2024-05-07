@@ -1,6 +1,5 @@
 package com.github.alenfive.rocketapi.datasource;
 
-import com.github.alenfive.rocketapi.entity.ApiEntity;
 import com.github.alenfive.rocketapi.entity.vo.Page;
 import com.github.alenfive.rocketapi.entity.vo.ScriptContext;
 import com.github.alenfive.rocketapi.entity.vo.TableInfo;
@@ -24,36 +23,6 @@ public class ClickHouseDataSource extends JdbcDataSource {
     }
 
     @Override
-    public <T extends ApiEntity> void saveEntity(T entity) {
-
-    }
-
-    @Override
-    public <T extends ApiEntity> T findEntityById(T entity) {
-        return null;
-    }
-
-    @Override
-    public <T extends ApiEntity> void removeEntityById(T entity) {
-
-    }
-
-    @Override
-    public <T extends ApiEntity> void updateEntityById(T entity) {
-
-    }
-
-    @Override
-    public <T extends ApiEntity> List<T> listByEntity(T entity) {
-        return null;
-    }
-
-    @Override
-    public <T extends ApiEntity> List<T> pageByEntity(T entity, IApiPager apiPager, Page page) {
-        return null;
-    }
-
-    @Override
     public List<Map<String,Object>> find(ScriptContext scriptContext) {
         List<Map<String,Object>> resultList = jdbcTemplate.queryForList(scriptContext.getScript().toString(), scriptContext.getParams()[0]);
         return resultList.stream().map(this::toReplaceKeyLow).collect(Collectors.toList());
@@ -72,7 +41,10 @@ public class ClickHouseDataSource extends JdbcDataSource {
     @Override
     public Object insert(ScriptContext scriptContext) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        jdbcTemplate.update(scriptContext.getScript().toString(), new MapSqlParameterSource(scriptContext.getParams()[0]), keyHolder);
+//        jdbcTemplate.execute(scriptContext.getScript().toString() );
+        jdbcTemplate.update(scriptContext.getScript().toString(), new MapSqlParameterSource(scriptContext.getParams()[0]) );
+
+    //    jdbcTemplate.update(scriptContext.getScript().toString(), new MapSqlParameterSource(scriptContext.getParams()[0]), keyHolder);
         return keyHolder.getKeyList().stream().map(item->item.get("GENERATED_KEY")).collect(Collectors.toList());
     }
 

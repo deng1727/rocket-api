@@ -13,6 +13,9 @@ public abstract class JdbcDriver extends IDataSourceDialectDriver {
         hikariConfig.setJdbcUrl(config.getUrl());
         hikariConfig.setUsername(config.getUser());
         hikariConfig.setPassword(config.getPassword());
+        if (config.getUrl().contains("clickhouse")){
+            hikariConfig.setDriverClassName("com.clickhouse.jdbc.ClickHouseDriver");
+        }
         return new HikariDataSource(hikariConfig);
     }
 

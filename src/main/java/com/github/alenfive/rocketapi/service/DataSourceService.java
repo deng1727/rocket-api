@@ -85,9 +85,9 @@ public class DataSourceService {
 
     private void assertDBConfigName(String dbName,String dbId) {
         List<DBConfig> dbList = getDBConfig();
-        if (!FieldUtils.isAlphaBeta(dbName)){
-            throw new IllegalArgumentException("name:"+dbName+" is invaild,we need alphaBeta as bean name");
-        };
+//        if (!FieldUtils.isAlphaBeta(dbName)){
+//            throw new IllegalArgumentException("name:"+dbName+" is invaild,we need alphaBeta as bean name");
+//        };
 
         for (DBConfig dbConfig : dbList){
             if (dbConfig.getName().equals(dbName) && !dbConfig.getId().equals(dbId)){

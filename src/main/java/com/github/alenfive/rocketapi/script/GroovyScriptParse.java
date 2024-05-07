@@ -109,9 +109,9 @@ public class GroovyScriptParse implements IScriptParse{
             buildScriptParams(bindings,apiParams);
 
             //手动开启事务
-            if (transactionManager != null){
-                transactionStatus = transactionManager.getTransaction(transactionDefinition);
-            }
+//            if (transactionManager != null){
+//                transactionStatus = transactionManager.getTransaction(transactionDefinition);
+//            }
 
             Object result = this.engineEval(script,bindings);
 

@@ -5,11 +5,13 @@ import com.github.alenfive.rocketapi.datasource.DataSourceDialect;
 import com.github.alenfive.rocketapi.entity.DBConfig;
 import org.springframework.stereotype.Component;
 
+import javax.sql.DataSource;
+
 /**
  * SQL  构造器
  */
 @Component
-public class ClickHouseDriver extends DruidJdbcDriver {
+public class ClickHouseDriver extends JdbcDriver {
 
     @Override
     public String getName() {
