@@ -38,6 +38,19 @@ public class JdbcDataSource extends DataSourceDialect implements DialectTransact
         this.dataSource = dataSource;
     }
 
+    /**
+     *
+     * @param dataSource
+     * @param isTrans 是否开启事务
+     */
+    public JdbcDataSource(DataSource dataSource,Boolean isTrans) {
+        this.jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
+        if (isTrans){
+            this.transactionManager = new DataSourceTransactionManager(dataSource);
+        }
+        this.dataSource = dataSource;
+    }
+
     public JdbcDataSource(DataSource dataSource, boolean storeApi) {
         this.jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
         this.transactionManager = new DataSourceTransactionManager(dataSource);

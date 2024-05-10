@@ -4,6 +4,7 @@ import com.github.alenfive.rocketapi.entity.vo.Page;
 import com.github.alenfive.rocketapi.entity.vo.ScriptContext;
 import com.github.alenfive.rocketapi.entity.vo.TableInfo;
 import com.github.alenfive.rocketapi.extend.IApiPager;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -16,10 +17,11 @@ import java.util.stream.Collectors;
 /**
  * mongodb 数据源操作
  */
+@Slf4j
 public class ClickHouseDataSource extends JdbcDataSource {
 
     public ClickHouseDataSource(DataSource dataSource) {
-        super(dataSource);
+        super(dataSource,Boolean.FALSE);
     }
 
     @Override
@@ -41,10 +43,14 @@ public class ClickHouseDataSource extends JdbcDataSource {
     @Override
     public Object insert(ScriptContext scriptContext) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
-//        jdbcTemplate.execute(scriptContext.getScript().toString() );
-        jdbcTemplate.update(scriptContext.getScript().toString(), new MapSqlParameterSource(scriptContext.getParams()[0]) );
-
-    //    jdbcTemplate.update(scriptContext.getScript().toString(), new MapSqlParameterSource(scriptContext.getParams()[0]), keyHolder);
+ //       jdbcTemplate.execute(scriptContext.getScript().toString() );
+//        try {
+//            jdbcTemplate.update(scriptContext.getScript().toString(), new MapSqlParameterSource(scriptContext.getParams()[0]) );
+//
+//        }catch (Exception e){
+//            log.warn("error",e);
+//        }
+        jdbcTemplate.update(scriptContext.getScript().toString(), new MapSqlParameterSource(scriptContext.getParams()[0]), keyHolder);
         return keyHolder.getKeyList().stream().map(item->item.get("GENERATED_KEY")).collect(Collectors.toList());
     }
 
@@ -58,14 +64,4 @@ public class ClickHouseDataSource extends JdbcDataSource {
         return script;
     }
 
-    @Override
-    public String transcoding(String param) {
-        return param
-                .replace("\'","\\\'");
-    }
-
-    @Override
-    public List<TableInfo> buildTableInfo() {
-        return null;
-    }
 }

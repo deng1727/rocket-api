@@ -98,7 +98,7 @@ public class GroovyScriptParse implements IScriptParse{
 
             Bindings bindings = new SimpleBindings();
             apiInfoContent.setEngineBindings(bindings);
-            addBinding(bindings);
+//            addBinding(bindings);
             for(IFunction function : functionList){
                 bindings.put(function.getFuncName(),function);
 
@@ -109,9 +109,9 @@ public class GroovyScriptParse implements IScriptParse{
             buildScriptParams(bindings,apiParams);
 
             //手动开启事务
-//            if (transactionManager != null){
-//                transactionStatus = transactionManager.getTransaction(transactionDefinition);
-//            }
+            if (transactionManager != null){
+                transactionStatus = transactionManager.getTransaction(transactionDefinition);
+            }
 
             Object result = this.engineEval(script,bindings);
 

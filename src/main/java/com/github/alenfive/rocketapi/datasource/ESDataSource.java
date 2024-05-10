@@ -15,7 +15,7 @@ public class ESDataSource extends JdbcDataSource {
 
 
     public ESDataSource(DataSource dataSource) {
-        super(dataSource);
+        super(dataSource,Boolean.FALSE);
     }
 
     public ESDataSource(DataSource dataSource, boolean storeApi) {

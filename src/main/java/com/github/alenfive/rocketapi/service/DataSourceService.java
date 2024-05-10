@@ -83,14 +83,16 @@ public class DataSourceService {
         clusterNotify.sendNotify(NotifyEntity.builder().eventType(NotifyEventType.RefreshDB).refreshDB(refreshDB).build());
     }
 
-    private void assertDBConfigName(String dbName,String dbId) {
+    private void assertDBConfigName(DBConfig dbConf) {
         List<DBConfig> dbList = getDBConfig();
-//        if (!FieldUtils.isAlphaBeta(dbName)){
-//            throw new IllegalArgumentException("name:"+dbName+" is invaild,we need alphaBeta as bean name");
-//        };
+        String dbName = dbConf.getName();
+        String id = dbConf.getId();
+        if (!FieldUtils.isAlphaBeta(dbName) && dbConf.isEnabled() ){
+            throw new IllegalArgumentException("name:"+dbName+" is invaild,we need alphaBeta as bean name");
+        };
 
         for (DBConfig dbConfig : dbList){
-            if (dbConfig.getName().equals(dbName) && !dbConfig.getId().equals(dbId)){
+            if (dbConfig.getName().equals(dbName) && !dbConfig.getId().equals(id)){
                 throw new IllegalArgumentException("name:"+dbName+" already exist");
             }
         }
@@ -107,7 +109,7 @@ public class DataSourceService {
                 .type(ConfigType.DB.name())
                 .build();
 
-        assertDBConfigName(dbConfig.getName(),dbConfig.getId());
+        assertDBConfigName(dbConfig);
 
         DBConfig oldDBConfig = null;
         if (StringUtils.isEmpty(dbConfig.getId())) {
