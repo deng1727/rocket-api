@@ -10,6 +10,7 @@ import com.github.alenfive.rocketapi.function.IFunction;
 import com.github.alenfive.rocketapi.utils.PackageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +33,9 @@ public class CompletionService {
 
     private Map<String,Object> cache = new ConcurrentHashMap<>();
 
+
+
+    //TODO 需要修正成event, 获取到db的变化时, 需要重新加载
     public CompletionResult provideCompletionTypes() throws Exception {
         String cacheKey = "completion-items-cache";
         CompletionResult result = null;
@@ -55,13 +59,12 @@ public class CompletionService {
             variables.put(item.getFuncName(),item.getClass().getName());
         });
 
-        Map<String, JdbcTemplate> beansOfType = context.getBeansOfType(JdbcTemplate.class);
 
-        beansOfType.forEach((beanName, jdbcTemplate) -> {
-            variables.put(beanName,jdbcTemplate.getClass().getName());
 
+        Map<String, DataSourceDialect> dialectMap = dataSourceManager.getDialectMap();
+        dialectMap.forEach((beanName, dataSourceDialect) -> {
+            variables.put(beanName,dataSourceDialect.getClass().getName());
         });
-
 
         functionList.forEach(item->{
             variables.put(item.getFuncName(),item.getClass().getName());

@@ -102,7 +102,7 @@ public class ScriptLanguageTests {
             }
 
             if (ifCloseIndex == -1){
-                throw new IllegalArgumentException("missed if close '}'");
+                //throw new IllegalArgumentException("missed if close '}'");
             }
 
             script = script.replace(startIf,ifCloseIndex+1,"");

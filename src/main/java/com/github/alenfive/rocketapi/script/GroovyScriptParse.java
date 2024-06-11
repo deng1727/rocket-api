@@ -71,10 +71,7 @@ public class GroovyScriptParse implements IScriptParse{
     }
 
     private void addBinding(Bindings bindings){
-        beansOfType.forEach((beanName, jdbcTemplate) -> {
-            bindings.put(beanName,jdbcTemplate);
-
-        });
+        bindings.putAll(beansOfType);
     }
 
     @Override
@@ -98,12 +95,12 @@ public class GroovyScriptParse implements IScriptParse{
 
             Bindings bindings = new SimpleBindings();
             apiInfoContent.setEngineBindings(bindings);
-//            addBinding(bindings);
             for(IFunction function : functionList){
                 bindings.put(function.getFuncName(),function);
 
             }
-
+            Map<String, DataSourceDialect> dialectMap = dataSourceManager.getDialectMap();
+            bindings.putAll(dialectMap);
 
             //注入属性变量
             buildScriptParams(bindings,apiParams);
